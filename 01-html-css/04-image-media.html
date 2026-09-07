@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>멀티미디어 태그</title>
+  </head>
+  <body>
+    <h2>이미지 태그</h2>
+    <!-- 
+     src : 이미지경로
+     alt : 대체 텍스트 
+     -이미지가 안뜰 때 대신 보임
+     -스크린리더(시각장애인)가 이걸 읽어줌
+     width / height : 이미지 크기 (픽셀단위)
+     loading : 로딩방식 lazy(지연로딩), eager(즉시로딩)
+     
+     -->
+
+    <img src="../assets/panda.png" alt="Panda" width="300" height="200" />
+    <figure>
+      <img src="../assets/panda.png" alt="Panda" width="300" height="200" />
+      <figcaption>아기 판다</figcaption>
+    </figure>
+
+    <h2>오디오 태그</h2>
+    <!-- controls : 재생 컨트롤 표시 loop : 반복 재생 -->
+    <audio src="../assets/audio.mp3" controls></audio>
+
+    <h2>
+      비디오 태그
+      <!-- controls : 재생 컨트롤 표시 loop : 반복 재생 -->
+      <video src="../assets/video.mp4" controls width="400"></video>
+    </h2>
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/5B7X1ej4IBQ?si=rusujgKAQy1gfWUo"
+      title="YouTube video player"
+      frameborder="0"
+      allow="
+        accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+        web-share;
+      "
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  </body>
+</html>
