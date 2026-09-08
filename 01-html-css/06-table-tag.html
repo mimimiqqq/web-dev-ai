@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>표 태그</title>
+  </head>
+  <body>
+    <h2>기본 표</h2>
+    <table border="1">
+      <!-- 가로 한 줄은 tr~~~! 테이블 로우의 약자(table row)-->
+      <tr>
+        <!-- 헤더 셀(제목칸임. 굵게 , 가운데) -->
+        <th>브라우저</th>
+        <th>제조사</th>
+      </tr>
+      <tr>
+        <!-- 일반 데이터칸 -->
+        <td>Chrome</td>
+        <td>Google</td>
+      </tr>
+      <tr>
+        <td>Safari</td>
+        <td>Apple</td>
+      </tr>
+    </table>
+
+    <h2>행/열 합치기</h2>
+    <table border="1">
+      <tr>
+        <!-- rowspan="2"는 이 셀이 두 행을 차지함을 의미 //3으로 하면 아래로 세칸.(그땐tr td 하나씩 더 넣어주기)-->
+        <th rowspan="2">이름</th>
+        <td>루이바오</td>
+      </tr>
+      <tr>
+        <td>후이바오</td>
+      </tr>
+      <tr>
+        <!-- colspan="2"는 이 셀이 두 열을 차지함을 의미(가로로 어느정도할건지) -->
+        <th colspan="2">주소</th>
+      </tr>
+      <tr>
+        <td colspan="2">경기도 용인 에버랜드</td>
+      </tr>
+    </table>
+    <h2>테이블 구조</h2>
+    <table border="1">
+      <!-- caption :표제목 -->
+      <caption>
+        바오 패밀리 친구들
+      </caption>
+
+      <!-- colgroup : 세로 열 묶음 -->
+      <colgroup>
+        <col />
+        <col style="background-color: green" />
+        <col />
+      </colgroup>
+      <!-- thead제목줄 tbody데이터줄 tfoot합계줄( 테이블의 구조를 정의 )-->
+
+      <thead>
+        <tr rowspan="2">
+          <th>이름</th>
+          <th>나이</th>
+          <th>주소</th>
+        </tr>
+      </thead>
+
+      <!-- tbody 는 리액트에서 작성하지 않으면 경고창 -->
+      <tbody>
+        <tr>
+          <td>코식이</td>
+          <td>36</td>
+          <td>경기도 용인</td>
+        </tr>
+        <tr>
+          <td>제돌이</td>
+          <td>28</td>
+          <td>제주도</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <th colspan="2">총 마리수</th>
+        <td>2</td>
+      </tfoot>
+    </table>
+  </body>
+</html>
