@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>폼 태그</title>
+  </head>
+  <body>
+    <h2>기본 폼</h2>
+
+    <!-- 
+        form :입력 칸들을 묶어서 한번에 보내는 영역
+        -acction : 입력값들을 보낼 주소(서버) 
+        -method : 어떻게 보낼지.입력값들을 보내는 방식(get, post)
+    -->
+    <!-- 
+          method="get"인 경우
+            -입력값들이 URL주소에 붙어서 전송됨:keyword=여행
+      -->
+    <form action="" method="get">
+      <!-- 
+        placeholer : 입력 전 흐리게 보이는 안내문구
+        name : 입력값을 보낼때 이름(키)으로 사용됨. 서버에서 이 이름으로 값을 받음
+        label 태그의 for 속성값이랑
+        input 태그의 id 속성값이 같으면 label을 클릭해도 input에 포커스가 이동함(연결)
+    -->
+      <label for="search">검색</label>
+      <input
+        id="search"
+        type="text"
+        name="keyword"
+        placeholder="키워드를 입력해주세요."
+      />
+      <!-- 
+            type="submit" 일때 폼 전 송 버튼
+            value는 버튼에 표시될 글자
+        
+        -->
+
+      <input type="submit" value="검색" />
+    </form>
+    <h2>회원가입</h2>
+    <!-- 
+    method="post"인 경우 
+    URL에 안보이고 본문에 담아서 전송(개발자 도구-network) 
+    -->
+
+    <form action="" method="post">
+      <!-- required는 필수 입력해야 넘어감. -->
+      아이디　<input name="id" type="text" required /><br />
+      <!-- minlength="9"는 최소 9자 이상 입력해야 넘어감.
+       maxlength="20"는 최대 20자까지만 입력 가능 -->
+
+      비밀번호<input name="password" type="password" minlength="9" /><br />
+
+      <!-- type 입력하는걸 추천 : submit(전송), reset(초기화), button(JS용) -->
+      <button type="submit">회원가입</button>
+      <button type="reset">초기화</button>
+      <button type="button" onclick="alert('확인!')">알람창</button>
+    </form>
+
+    <h2>선택 입력</h2>
+    <form action="">
+      <fieldset>
+        <legend>성별</legend>
+        <!-- radio :여러개중 하나만
+         name : 값이 같아야 같은 그룹으로 인식 -->
+        <input type="radio" id="male" name="gender" value="m" />
+        <label for="male">남자</label>
+
+        <input type="radio" id="female" name="gender" value="f" />
+        <label for="female">여자</label>
+      </fieldset>
+      <!-- 필드셋 칸!!만들기 -->
+      <fieldset>
+        <legend>취미</legend>
+        <label>
+          <!-- checkbox : 여러개 동시 선택 가능 -->
+          <input type="checkbox" name="hobby" value="music" />음악</label
+        >
+        <label> <input type="checkbox" name="hobby" value="game" />게임</label>
+      </fieldset>
+      <button type="submit">전송</button>
+    </form>
+
+    <h2>선택 목록과 여러 줄 입력</h2>
+    <form action="">
+      국적
+      <!-- select + option : 목록에서 한 고르기 -->
+      <select name="national">
+        <!-- select + option : 목록에서 한 고르기
+         disabled : 선택 불가능
+         selected : 기본 선택 -->
+        <option disabled selected>선택</option>
+        <option value="korea">한국</option>
+        <option value="japan">일본</option>
+        <option value="china">중국</option>
+      </select>
+
+      <br />
+      메모
+      <!-- 여러줄 입력 -->
+      <textarea name="memo"></textarea>
+      <button type="submit">전송</button>
+    </form>
+
+    <h2>파일 업로드</h2>
+    <form action="">
+      <!-- accept : image/*  이미지 파일만...
+       multiple : 여러 파일 선택 가능   -->
+      <input type="file" accept=".png,.jpg,.jpeg" multiple />
+      <button type="submit">전송</button>
+    </form>
+    <h2>추가 입력 타입</h2>
+    <!-- type만 바꾸면 브라우저가 알맞은 UI 자동으로 바꿈 -->
+    <form action="">
+      이메일<input type="email" required /><br />
+      전화번호<input type="tel" required /><br />
+      날짜<input type="date" /><br />
+      시간<input type="time" /> <br />
+      색상<input type="color" /><br />
+      슬라이더<input type="range" min="0" max="10" /><br />
+
+      <button type="submit">전송</button>
+    </form>
+  </body>
+</html>

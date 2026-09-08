@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습-Form</title>
+  </head>
+
+  <body>
+    <h2>넷째바오 100일 잔치 참석 신청서</h2>
+    <p>2026년 9월 11일, 에버랜드 판다월드에서 열립니다.</p>
+    <form action="" method="get">
+      <label for="name">이름</label>
+      <input type="texe" />
+      <br /><br />
+      <label for="age">연락처</label>
+      <input type="text" placeholder="010-0000-0000" />
+      <br /><br />
+      <label for="age">이메일</label>
+      <input type="text" />
+      <br /><br />
+      <label for="relationship">넷째바오와의 관계</label>
+      <select name="relationship" selected>
+        <option value="">선택해주세요</option>
+        <option value="">가족(바오패밀리)</option>
+        <option value="">친구</option>
+        <option value="">판다유치원 선생님</option>
+        <option value="">팬</option>
+      </select>
+      <br /><br />
+    </form>
+    <form>
+      <fieldset>
+        <legend>참석여부</legend>
+        <input type="radio" name="attendance" />
+        <label for="">참석</label>
+        <input type="radio" name="attendance" />
+        <label for="">불참</label>
+      </fieldset>
+
+      <!--
+      
+      !!!!!!!!!!!!!!!!컨드롤 + 스페이스!!!!!!!!!!!!!!!하면 제안목록 뜬다 
+      
+      -->
+
+      <fieldset>
+        <legend>준비해 올 선물</legend>
+        <input type="checkbox" />
+        <label for="">대나무</label>
+        <input type="checkbox" />
+        <label for="">죽순</label>
+        <input type="checkbox" />
+        <label for="">장난감</label>
+        <input type="checkbox" />
+        <label for="">사진기</label>
+      </fieldset>
+    </form>
+    <br />
+    <form action="" method="get">
+      도착 예정 시간<input type="time" /> <br /><br />
+
+      축하 메시지<textarea></textarea> <br /><br />
+      <button type="submit">신청하기</button>
+    </form>
+  </body>
+</html>
