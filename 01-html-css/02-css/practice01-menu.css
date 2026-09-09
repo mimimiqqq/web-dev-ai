@@ -1,0 +1,36 @@
+.p {
+  text-align: center;
+  font-family: "Bagel Fat One", system-ui;
+}
+
+.date {
+  text-align: center;
+}
+.mon {
+  color: green;
+  font-weight: 700;
+}
+.today {
+  font-weight: 700;
+}
+
+.morning {
+  font-weight: 700;
+}
+.lunch {
+  font-weight: 700;
+}
+.dinner {
+  font-weight: 700;
+}
+
+.q {
+  text-align: center;
+}
+.sik {
+  font-size: 13px;
+}
+
+.sa {
+  color: green;
+}

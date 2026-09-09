@@ -1,0 +1,74 @@
+/* font-family : 앞에서 부터 있는 글꼴 사용, 없으면 다음것 사용 */
+.ff-sans {
+  font-family: "돋움", sans-serif;
+}
+.ff-sarif {
+  font-family: "궁서", serif;
+}
+.ff-web {
+  font-family: "Gowun Dodum", sans-serif;
+}
+/* Font-Size */
+.fs-px {
+  font-size: 20px;
+}
+.fs-rem {
+  /* rem은 16px *1.5배=24px이 됨. */
+  font-size: 1.5rem;
+}
+.fw-bold {
+  /* bold는 숫자로 700이랑 같음 */
+  font-weight: 900;
+}
+.fw-thin {
+  font-weight: 300;
+}
+/* line-height */
+.lh {
+  /* line-height 제일 많이 쓰이는 기준이 1.5 ~ 1.8 */
+  line-height: 1.8;
+}
+/* text-align : left(기본값임), center, right, justify */
+
+.ta-center {
+  text-align: center;
+}
+.ta-right {
+  text-align: right;
+}
+/* color */
+.c-name {
+  /* 브라우저가 인식하는 기본색상명(web safe color 216가지) */
+  color: crimson;
+}
+.c-hex {
+  /* #RRGGBB-범위 : 000000 ~ ffffff */
+  color: #0c08ee;
+}
+.c-rgb {
+  /* red(0~255), green(0~255), blue(0~255),
+  alpha (투명도,0~1)*/
+  color: rgb(47, 111, 237);
+  background: rgba(0, 0, 0, 0.8);
+}
+.c-hsl {
+  /* 색상환(0~360), 채도(0~100%), 밝기(0~100%)*/
+  color: hsla(200, 50%, 49%, 0.3);
+}
+/* text-decoration  a태그는 밑줄이 있어서 논처리 하는게 낫다*/
+.td-underline {
+  text-decoration: line-through;
+}
+.td-none {
+  text-decoration: none;
+}
+/* 글자사이 간격 : letter spacing  */
+.ls {
+  letter-spacing: 10px;
+  color: rgb(255, 131, 178);
+}
+/* text-shadow : 글자 그림자 */
+.shadow {
+  /* x축, y축(아래 일수록 숫자가 커짐),blur */
+  text-shadow: 2px 2px 4px rgb(12, 231, 103);
+}

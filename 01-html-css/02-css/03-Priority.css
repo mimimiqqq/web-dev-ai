@@ -1,0 +1,13 @@
+#strong {
+  color: orange;
+}
+.weak {
+  color: hotpink;
+}
+p {
+  /* 가급적으로 사용금지 !important */
+  color: red !important;
+}
+p {
+  color: blue;
+}
