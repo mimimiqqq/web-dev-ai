@@ -1,10 +1,19 @@
-.p {
+/* CSS 변수 : 색이나 폰트 등 한 번만 등록,
+              사용하는 곳에서는 var() */
+
+:root {
+  --font: "Bagel Fat One", system-ui;
+  --text-gray: #4d3ed8;
+}
+h2 {
   text-align: center;
-  font-family: "Bagel Fat One", system-ui;
+  font-family: var(--font);
 }
 
 .date {
   text-align: center;
+  color: var(--text-gray);
+  font-size: 14px;
 }
 .mon {
   color: green;
@@ -28,6 +37,7 @@
   text-align: center;
 }
 .sik {
+  color: var(--text-gray);
   font-size: 13px;
 }
 
