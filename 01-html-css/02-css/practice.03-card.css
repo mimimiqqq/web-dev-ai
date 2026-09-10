@@ -1,0 +1,54 @@
+html {
+  background-image: linear-gradient(135deg, green, blue);
+  background-attachment: fixed;
+}
+.box {
+  border: 1px solid;
+  margin-bottom: 20px;
+  text-align: center;
+  color: antiquewhite;
+  margin: auto;
+}
+.bd-solid {
+  width: 300px;
+  height: 400px;
+  border: 1px solid rgb(216, 209, 209);
+  border-radius: 10%;
+  padding-top: 30px;
+}
+
+.pos-outer {
+  margin: auto;
+  background-position: center;
+  background-size: cover;
+  height: 100px;
+  width: 100px;
+  border: 1px solid rgb(216, 209, 209);
+  border-radius: 100%;
+  position: relative;
+  background-image: url(../assets/panda.png);
+}
+.e {
+  border-bottom: 0.1px solid white;
+  margin: auto;
+  width: 80%;
+  padding-bottom: 30px;
+}
+.day {
+  color: yellow;
+}
+.p911 {
+  padding: 30px 30px 30px 30px;
+}
+.you {
+  background-color: aliceblue;
+  color: black;
+  width: 200px;
+  height: 35px;
+  border-radius: 10px;
+}
+.in {
+  width: 200px;
+  height: 35px;
+  border-radius: 10px;
+}

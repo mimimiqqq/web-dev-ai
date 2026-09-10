@@ -1,0 +1,80 @@
+.box
+{background-color: azure;
+border: 1px solid;
+margin-bottom: 10px;}
+}
+/* width : 너비(가로) / height : 높이(세로) */
+/* px:고정길이 %: 가변길이 */
+.w-fixed {
+  width: 200px;
+  height: 100px;
+}
+
+.w-percent {
+  width: 50%;
+  height: 100px;
+  /* 부모의 값이 있어야 %계산이 가능 */
+}
+/* paddind */
+.pad-all {
+  padding: 20px;
+}
+/* top : 위, right : 오른쪽, bottom : 아래, left : 왼쪽 */
+.pad-parts {
+  padding-left: 10px;
+  /* 값이 4개면 -위 오른쪽 아래 왼쪽(시계방향으로 돌아감) */
+  padding: 30px 20px 40px 10px;
+
+    /* 값이 3개면 -위 좌우 아래 (시계방향으로 돌아감) */
+  padding: 30px 20px 40px;
+      /* 값이 2개면 -위 아래 (시계방향으로 돌아감) */
+  padding: 30px 20px;
+}
+/* margin도 마찬가지로 padding처럼-top, -righr, -bottom, -left 존재 
+margin 값 개수에 따라 방향 4개 조절도 동일*/
+.mar-all {
+    margin:24px
+}
+.mar-auto{width: 300px; 
+    margin: auto;
+}
+/* border */
+/* solid 실선 */
+.bd-solid{ width: 90px;
+    height: 90px;
+    border: 3px solid red; 
+}
+.bd-round{
+    width: 90px; height: 90px; border: 3px dashed green; border-radius: 10px;
+}
+.bd-circle{width: 90px; height: 90px; border: 3px dotted hotpink; border-radius: 50%;}
+/*레디오스 하면 동그라미로 만들어줌*/
+
+/* box-sizing */
+.bs-content, .bs-border{width: 200px;
+    height: 80px;
+padding: 20px;
+border: 5px solid rgb(165, 127, 255);}
+
+/* 기본값 컨텐츠(내용물 ,속안에 것)-위드:내용만 들어가있음 . 실제길이가 200+20*2*5*2=250     */
+.bs-content{box-sizing: content-box;}
+/* 테두리가 기준인 보더.(테두리까지 계산한것->실제길이 200) */
+.bs-border{box-sizing: border-box;}
+
+
+/* display span은 그 내용물만 감싸는데 display로 block하면 넓어지고, div는 넓게 감싸는데 디스플레이 인라인 하면 좁아짐. 
+인라인은 위드 헤잇 안먹힘... 인라인 블럭은 가능하지만 요즘은 안씀  (뒤에 나올 flex사용 함.)*/
+.d-span{display: block;}
+.d-div{display: inline-block;
+width: 200px;
+height: 100px;}
+
+.pos-outer{height: 250px;
+border: 1px solid;
+background: #f6f6f6;}
+.pos-box{width: 100px; height: 60px;color: #fff;}
+.relative{background-color: navy;
+    
+position: relative;
+top: 10px;
+left: 10px}
