@@ -69,12 +69,51 @@ border: 5px solid rgb(165, 127, 255);}
 width: 200px;
 height: 100px;}
 
-.pos-outer{height: 250px;
+.pos-outer{
+  overflow:scroll;
+  position: relative;  /*자식이 abdolute 의 기준점*/
+  height: 250px;
 border: 1px solid;
 background: #f6f6f6;}
+
 .pos-box{width: 100px; height: 60px;color: #fff;}
+
 .relative{background-color: navy;
-    
 position: relative;
+top: 10px;    /*bottom*/
+left: 10px;  /*right*/
+z-index: 1; /*겹치는 요소가 있을 시 숫자가 클수록 상위*/   }
+
+.absolute{background-color: green;
+position: absolute;
+position: absolute;
 top: 10px;
-left: 10px}
+left: 190px;}   
+
+.fixed{
+  background-color: crimson;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+.stikey{background-color: orange;
+position: sticky;
+top: 0;
+}
+
+/* overflow  */
+.of-auto, .of-hidden{
+  width: 200px;
+  height: 60px;
+  white-space: nowrap;
+}
+
+.of-auto{overflow: auto;}
+.of-hidden{
+  overflow: hidden;
+  text-overflow: ellipsis;  /*말줄임표... 쩜쩜쩜 표시;됨*/
+}
+/*안보이게 처리*/
+.hidden{visibility: hidden;}
+.none{display: none;}

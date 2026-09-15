@@ -1,0 +1,96 @@
+body {
+  background: lightblue;
+  color: rgb(245, 22, 14);
+}
+/* [데스크탑 기준]max-width : 이 너비보다 좁아지면 덮어씌워짐. */
+@media (max-width: 1000px) {
+  /*1000px 이하*/
+  body {
+    color: blue;
+  }
+}
+@media (max-width: 700px) {
+  /*700px 이하*/
+  body {
+    color: rgb(212, 182, 49);
+  }
+}
+/* 모바일 기준-min-width : 이 너비보다 넓어지면 덮어 씌워짐 */
+@media (min-width: 700px) {
+  /*700px 이상*/
+  body {
+    background-color: lightseagreen;
+  }
+}
+
+@media (min-width: 1000px) {
+  body {
+    background-color: lightcoral;
+  }
+}
+/* 모바일기준 */
+.flex-container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.item {
+  background: dodgerblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 80px;
+  font-weight: bold;
+}
+@media (min-width: 600px) {
+  .flex-container {
+    flex-direction: row;
+  }
+  .flex-container .item {
+    flex: 1;
+  }
+}
+.grid-container {
+  display: grid; /*나눠지게끔함*/
+  gap: 10px; /*사이간격을 나눠줌 디스플레이가 그리드일경우에만 가능.*/
+  grid-template-columns: 1fr;
+}
+@media (min-width: 700px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /*한줄에 2칸식. 700px이상됐을때*/
+}
+
+@media (min-width: 1000px;) {
+  .grid-container {
+    grid-template-columns: repeat(4, 1fr); /*4줄에 한칸씩*/
+  }
+}
+/*aspect-ratio : 높이를 직접 계산하지 않아도
+가로세로비율 고정->
+이미지나 카드 썸네일에 유용.(유툽같은거)*/
+.ratio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.ratio-card {
+  background: #111;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.ratio-card:first-child {
+  aspect-ratio: 16 / 9;
+}
+.ratio-card:nth-child(2) {
+  aspect-ratio: 4 / 3;
+}
+.ratio-card:last-child {
+  aspect-ratio: 1 / 1;
+}

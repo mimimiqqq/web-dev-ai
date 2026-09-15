@@ -35,9 +35,46 @@
     <div class="box d-div">display:inline</div>
 
     <h2>position</h2>
-    <p>relative</p>
+    <p>relative : 원래 자리 기준으로 이동</p>
+    <p>absolute : 가장 가까운 부모가 position:relative 기준(없으면 화면)</p>
+    <p>fixed : 화면 상단바 (뷰포트) 기준, 스크롤 해도 고정</p>
+    <p>sticky : 스크롤하다가 지정위치가 닿으면 고정이 되어버리기~</p>
     <div class="pos-outer">
       <div class="pos-box relative">relative</div>
+      <div class="pos-box absolute">absolute</div>
+      <div class="pos-box fixed">fixed</div>
+      <div class="pos-box stikey">stikey</div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed aliquam quo
+        nemo temporibus harum distinctio illum id, minus, hic quidem placeat
+        adipisci provident velit tempora praesentium pariatur, dicta vero
+        ratione? Est perspiciatis, quod ut sint, optio eveniet mollitia, maiores
+        praesentium inventore totam qui laborum minus in magni debitis
+        laudantium consectetur assumenda vitae molestias. Minus neque beatae
+        accusantium dignissimos repellat provident, earum asperiores obcaecati
+        natus quis, possimus nisi voluptate temporibus recusandae inventore
+        unde, magnam sit doloremque doloribus? Voluptates ad nobis quam nisi?
+        Vel delectus dolorem amet hic voluptatem repudiandae eligendi quis ut
+        doloremque! Porro commodi aliquam, accusantium beatae eum placeat at?
+      </p>
     </div>
+    <h2>overflow - 박스보다 내용이 넘치는 경우에 사용~</h2>
+    <div class="box of-hidden">
+      hidden Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
+      ipsam sed ipsa laboriosam reiciendis ducimus harum, nostrum laborum eaque
+      voluptatem nihil corrupti reprehenderit voluptatibus velit sequi quas.
+      Dolore, modi vitae!
+    </div>
+    <div class="box of-atuo">
+      atuo Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+      consequatur quia, fugit quidem eaque repudiandae. Aspernatur
+      exercitationem vitae quisquam voluptates, magni nihil laboriosam repellat
+      harum, impedit illum eos aperiam facere.
+    </div>
+    <h2>visibility:hidden vs display:none 차이점</h2>
+       <div class="box hidden">보통박스</div>
+       <div>visibility:hidden 자리는 남음</div>
+       <div class="box none"">보통박스</div>
+       <div>display:none 자리도 없어짐</div>
   </body>
 </html>

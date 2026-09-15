@@ -1,0 +1,20 @@
+/* vh는 뷰 높이. vw는 너비값.인데 위드같은경우는 100%를 많이 씀. */
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url(../assets/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: rgb(253, 247, 247);
+  text-align: center;
+  background-color: rgb(0 0 0/10);
+
+  /* 텍스트랑 이미지만 가운데. */
+}
+
+h1 {
+  font-size: 4rem;
+}

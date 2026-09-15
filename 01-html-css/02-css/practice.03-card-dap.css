@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(150deg, green, rgb(114, 108, 209));
+  padding-top: 20px;
+}
+.card {
+  /* opacity: 50%;   안에 내용물까지 투명하게 되다보니 주의!! */
+  /* 텍스트 얼라인 이미지나 텍스트만 가운데 정렬 */
+  text-align: center;
+  width: 400px;
+  height: 500px;
+
+  margin: auto;
+  /* 해당요소가 가로 크기를 가지고 있으면 오토만 했을시 균등하게 여백을 지정할수 있음 */
+  /* border, background 투명하게, 위에 띄워져 있어야 하고..또뭐가 있더라~ */
+  border: 1px solid rgb(255 255 255 /0.5);
+  border-radius: 20px;
+  background-color: rgb(255 255 255/50%);
+  padding: 20px;
+}
+
+img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgb(255 255 255 / 0.7);
+}
+/* cover -> 잘라져도 좋으니까 맞춰줘라 */
+.profile {
+  /* 프로필 이미지 - 동그라미, 보더 잇어야함(border)   백그라운드 사이즈-커버.백그라운드포지션 센터.*/
+
+  border-radius: 50%;
+  border: 3px solid rgb(255 255 255 / 0.7);
+  width: 90px;
+  height: 90px;
+  margin: auto;
+  background-image: url(../assets/panda.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.e {
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit; /* 인헤릿은 보통 부모 색깔 따라가는 용도.. */
+}
+
+/* 버튼 색 바꾸고 호버 한번 하고. 마물 하기. */

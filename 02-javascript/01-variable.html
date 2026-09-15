@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>변수와 연산자</title>
+  </head>
+  <body>
+    <h1>변수와 연산자</h1>
+    <h2>var, let, const</h2>
+    <script>
+      // 변수 : 값을 담는 공간
+      // 변수명 = 값
+      //var랑 let/const의 차이가 뭐에요?
+      //var는 예전에 사용했고, 현재로서는(es6) 사용하지않는걸 추천.
+
+      var oldVar = 1;
+      console.log(oldVar);
+      oldVar = 2;
+      console.log(oldVar);
+
+      //let 같은경우는 값을 바꿀 수 있는 변수에 사용(얘는 아주 가끔 사용함..보안&악의적일수도 있기때문에.어쩔수 없는상황.)
+      let nickname = "권지원";
+      console.log(nickname);
+      nickname = "김미래";
+      console.log(nickname);
+
+      //const는 값을 바꿀수 없는 변수에 사용. (변수 사용할땐 const를 자주 사용.)
+      const name = "김소연";
+      console.log(name);
+      name = "황건영";
+    </script>
+    <h2>자료형 typeof</h2>
+    <script>
+      const userId = "김진아"; //문자열 - string(',")을 써야 검사탭에서 에러가 안남
+      console.log(typeof userId);
+      const age = 15; //숫자 number
+      console.log(typeof age);
+      let check = true; //논리형 - boolaen(참or거짓)
+      check = false;
+      console.log(typeof check);
+      let unknown; // 값이 정의되지 않음.- undefinde
+      console.log(typeof unknown);
+      let isNone = null; ///값이 없음 null
+
+      console.log(typeof isNone); //type은 object로 뜰텐데 언디파인드같은거임.
+    </script>
+    <h2>템플릿 리터럴</h2>
+    <script>
+      const hobby = "게임";
+      console.log("내 취미는 " + hobby + "입니다.");
+      console.log(`내 취미는 ${hobby} 입니다`);
+    </script>
+    <h2>숫자</h2>
+    <script>
+      const num1 = 10;
+      const num2 = 3;
+      console.log(num1 + num2); // 13
+      console.log(num1 - num2); // 7
+      console.log(num1 * num2); //30
+      console.log(num1 / num2); //3.33333...
+      console.log(num1 % num2); //1   나누기 했던거에 나머지값 나옴
+
+      // parseInt 소수점 단위뒤에는 다 사라지게끔.(Int가 정수부분만 남기는것)
+      console.log(parseInt(num1 / num2));
+
+      //문자를 숫자로 바꾸는 애들도 있음.
+      console.log(typeof Number("100"));
+      console.log(Number("hello")); //NaN  (Not a Number)
+
+      //숫자를 문자로 바꾸는 애들
+      console.log(typeof String(100));
+
+      //실수로 변환
+      console.log(parseFloat("3.14"));
+    </script>
+
+    <h2>Boolean과 비교연산자</h2>
+    <script>
+      console.log(true, false);
+
+      //모든 값들을 boolean 으로 변환
+      // false 인 경우 : 0, '', underfind, null, NaN
+      // 그 외에는 true
+      console.log(Boolean("hello")); //true
+      console.log(Boolean("")); //false
+      console.log(Boolean(0)); //false
+      console.log(Boolean(1)); //true
+
+      const a = 100;
+      const b = "100";
+      //==와 ===의 차이는?
+
+      console.log(a == b); //true
+      console.log(a === b); //false      ->세개짜리는 타입까지비교(typeof)
+
+      // 같지 않은가?
+      console.log(a != b); //느낌표는 부정을 표현함 false
+      console.log(a !== b); //true(타입까지 비교)
+
+      const c = 200;
+      console.log(a < c); //100<200  -true
+      console.log(a > c); //false
+      console.log(a <= c); // 100보다 200이 크거나 같은가?
+      console.log(a >= c); //100보다 200이 작거나 같은가?
+    </script>
+    <h2>논리 연산자</h2>
+    <script>
+      const x = 10;
+      const y = 20;
+      //&& : and 연산자 (그리고)   - 무조건 둘다 트루여야 true뜸
+      console.log(x < 15 && y > 10); //true
+      console.log(x > 15 && y > 10); //false
+
+      console.log("JavaScript" && 12345); //12345->왜 이게 나올까?
+      //자바스크립트가 트루고 12345의 결과값을 확인하는중이라 12345가 나옴
+      console.log("" && 12345); // 애초에 불린에서 아무값도 안나오면 폴스라서 뒤에것도 안보고 폴스 내버림
+      //|| : or연산자 (또는) - 둘중 하나라도 true이면 트루
+      console.log(x < 15 || y > 10); //true
+      console.log(x > 15 || y > 10); //true
+
+      console.log(null || "JS"); //    null은 일단 불룬에서 false임.  JS확인중이라JS로 나옴
+      console.log(1 || "JS"); // 1
+
+      //-->단축 평가 (short circuit evaluation)
+      //    -앞의 값에 따라 뒤이 값을 평가할지 말지 결정
+      //그래서 실무에 많이 쓰는게 로그인상태일때, 입력값검증할때
+    </script>
+  </body>
+</html>
