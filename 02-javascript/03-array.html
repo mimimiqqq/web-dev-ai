@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열</title>
+  </head>
+  <body>
+    <h1>배열</h1>
+    <p>하나의 변수에 여러값을 저장하는 자료형</p>
+    <script>
+      const arr = [1, 2, 3, 4, 5]; //유툽으로 따지자면 한페이지에 동영상 주르르나와있는거.[동영상정보1, 동영상정보2, 3, 4, 5]
+      //arr이라는 값에 변수를 다 담아서 쓸수 있다
+      // 대괄호안에가 내가 저장을 하고자 하는값들.굳이 하나씩안쓰고 묶음느낌.
+      console.log(arr);
+      console.log(typeof arr); //object(객체)가 뜸.//타입오브한테는 배열인지 인지를못함
+      console.log(Array.isArray(arr)); //배열인지 물어보는데 맞으면 트루 틀리면 펄스
+      console.log(arr[0]); //1로 나옴 0번이 1번이고, 동영상정보1 이 온다는 뜻  인덱스는 0부터 시작임 .
+      console.log(arr.length); //배열의 길이를 알 수 있다.
+      //배열의 마지막 값만 가지고 오라고할때.0부터 시작하는거니까..-1을 해줘야 함.
+      console.log(arr[arr.length - 1]);
+    </script>
+    <h2>배열 요소 추가 23번줄</h2>
+    <script>
+      arr.push(6); //맨뒤에 추가 하는..
+      arr.unshift(0); //맨 앞에 추가되는
+      //splice (인덱스, 삭제할개수, 추가할값1, 추가할값2...)
+      arr.splice(3, 0, 9, 2);
+      console.log(arr);
+    </script>
+    <h2>배열 요소 삭제 31번줄</h2>
+    <script>
+      arr.pop(); //맨뒤에값이 삭제됨~
+      arr.shift(); //맨 앞이 삭제
+      //인덱스 2에 있는 값 하나 삭제하겠다(사람으로 치면 3번째값.)
+      arr.splice(2, 1);
+      console.log(arr);
+    </script>
+    <h2>배열 요소 수정 39번줄</h2>
+    <script>
+      //인덱스 1의 값을 100으로 수정..기존 인덱스 1의 값은 삭제하고 새로운 100이라는 값을 추가하겠다
+      arr.splice(1, 1, 100); //인덱스값 1 이고  삭제할값 1추가할값 100
+      console.log(arr);
+      //값이 4인 걸 777로 수정하고 싶다
+      const index = arr.indexOf(4);
+      //indexOf(값)의 해당값(인덱스)을 알려줌.
+      arr.splice(arr.index, 1, 777);
+      console.log(arr);
+      arr[index] = 999;
+      console.log(arr);
+    </script>
+    <h2>배열 정렬 52번줄</h2>
+    <script>
+      arr.sort(); //문자 정렬 ㄱㄴㄷㄹ, 1234순..
+      arr.sort((a, b) => a - b); //숫자정렬
+      arr.reverse(); //반대로 정렬시킴
+      console.log(arr);
+    </script>
+    <h2>문자열 배열 59번줄</h2>
+    <script>
+      const str = "hello, JavaScript!";
+      //split(구분자) : 문자열을 배열로 바꿔줌.
+      const strToArr = str.split("");
+      console.log(strToArr);
+      //join(구분자) : 배열을 문자열로 바꿔줌.
+
+      const arrToStr = strToArr.join(":");
+      console.log(arrToStr);
+    </script>
+  </body>
+</html>
