@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반복문</title>
+  </head>
+  <body>
+    <h2>반복문</h2>
+    <script>
+      //1~10까지 출력하는경우
+      /*
+       for (초기값에대한설명 i j k;조건식범위;증감식;){
+       반복문 조건에 해당되는 만큼 실행하겠다.
+       }
+       */
+      for (let i = 1; i <= 10; /*10까지 필요하다*/ i++) {
+        console.log(i);
+      }
+    </script>
+    <h2>전위/후위 연산자 21번줄</h2>
+    <script>
+      let num = 1;
+      num = num + 1;
+      console.log(num); //2
+      //num = num + 1 : ++num, num++
+      //num = num - 1 : --num, num--
+      //++num, --num 앞은 전위연산자 ->먼저계산하고 나중에출력
+      //num++, num-- 뒤는 후위연산자 ->먼저출력하고 나중에계산
+      console.log(++num); //3
+      console.log(num++); //결과값은 3 근데 이미 4가돼있다고함..
+      console.log(num); //4
+      console.log(--num); //3  앞에붙은거--는 계산되고나서 로 보면됨
+      console.log(num--); //결과값은 3이지만 넘값은 2라고함.....
+    </script>
+    <h2>복합대입연산자 36번줄</h2>
+    <script>
+      num += 3; //=이랑 + 같이 사용하면 복합대입연산자임..  같은말 num = num + 3;
+      num -= 2; //num = num - 2
+      num *= 5; //num = num * 5
+      num /= 4; //num = num / 4
+
+      //30부터 3씩 감소해서 3까지 출력되게끔.
+      for (
+        let i = 30;
+        i >= 3;
+        /*3까지만감소시키기 3씩줄어들기. i>0도 됨*/ i -= 3
+      ) {
+        console.log(i);
+      }
+    </script>
+    <h2>배열과 for문</h2>
+    <script>
+      const movies = [
+        "오디세이",
+        "옵세션",
+        "스파이더맨 : 브랜드 뉴데이",
+        "더 드라마",
+        "싱 어게인",
+      ];
+      /*반복문으로쓰고 싶을때 for로 인덱스값 잡고 , 두번째는 조건 4까지 필요하고, */
+      //배열 .lenght는 배열의 길이
+      for (let i = 0; i <= 4; /* movies.lenght;  or  i<5*/ i++) {
+        console.log(movies[i]);
+      }
+      // for .. in : for(index in 배열){}
+      for (let index in movies) {
+        console.log(movies[index]);
+      }
+      //for .. of : for(값 of 배열){}
+      for (const value of movies) {
+        console.log(value);
+      }
+    </script>
+    <h2>while문 와일문</h2>
+    <script>
+      /*while (조건) 쓰고 조건이 트루면 똑같은데, 계속~ 실행을 시켜줍니다
+      (계속이 킬포.끝나지가 않음. 멈춰주는 상황을 만들어줘야함)*/
+      //1~10까지 출력.
+      let i = 1;
+      while (i <= 10) {
+        console.log(i);
+        i++;
+      }
+      //무한루프라고 함..조건이 계속 트루. 일부러 사용함. 게임같은곳에 사용.
+      // while (true) {
+      //   const input = prompt("종료하려면 q를 입력해주세요");
+      // //break를 만나면 해당 구문을 빠져나가는 조건
+      // if (input === "q") break;
+      // }
+    </script>
+    <h2>break/ continue</h2>
+    <script>
+      //break와 continue 의 차이는?
+      //break - 반복문을 완전히 빠져나감.
+      for (let i = 1; i < 10; i++) {
+        if (i === 7) break;
+        if (i === 2 || i === 3) continue;
+        console.log(i);
+      }
+    </script>
+    <h2>2차원 배열 + 중첩 for 문 102번줄</h2>
+    <script>
+      const arr = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ];
+      //반복문을 사용해서 1~9까지 나오게 하고싶을때
+      console.log(arr[0]);
+      console.log(arr[0][0]); /*1을 가져오고 싶을때 대괄호 두개가 필요하다.*/
+      console.log(arr[0][1]); //2
+
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < 3; j++) console.log(arr[i][j]);
+      }
+
+      //위에 중첩문이 어려움...아래걸로 해도됨... of
+
+      for (const i of arr) {
+        console.log(i);
+
+        for (const j of i) console.log(j);
+      }
+    </script>
+  </body>
+</html>

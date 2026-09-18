@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열, 반복문 연습문제</title>
+  </head>
+  <body>
+    <h1>배열, 반복문 연습문제</h1>
+    <ol style="line-height: 2">
+      <li>
+        1부터 20까지의 합을 구하시오.
+        <script>
+          //렛 i 는 최초 시작값이고, i++는 계속 플러스를 하겠다는 뜻이고,
+          //  i<=20은 거기까지가 니가 더할 숫자의 연속끝지점이다
+
+          // let sum = 0;
+          //for (let i = 1; i <= 20; i++) {
+          //console.log("i : " + i);
+          //sum = sum + i; // sum = 1, i = 1
+          //console.log("sum : " + sum);
+          //sum += i; // sum = sum + i
+          //console.log("------------------");
+          //}
+          let num = 0;
+          for (let i = 1; i <= 20; i++) {
+            num += i;
+            /*num은 0자리부터야.
+            +=는 계속더하는거야.
+            i는 1부터 20까지야. */
+          }
+          console.log(num);
+        </script>
+      </li>
+
+      <li>
+        주어진 배열의 모든 요소를 for문으로 순회하며 합계를 구하시오.
+        <script>
+          const prices = [5500, 3000, 12000, 8000];
+          // 여기에 코드 작성
+
+          //  console.log(prices[0]);
+          //  console.log(prices[1]);
+          //  console.log(prices[2]);
+          //  console.log(prices[3]);
+          console.log(prices);
+          let total = 0; /*보통 합계시작할때 무 부터 시작하려고.*/
+          for (
+            let i = 0 /*[5500...]배열이 있어서 0번째부터 시작한다는뜻*/;
+            i <= 3 /* 8000은 3번째ㅔ자리.조리법같은것 .break */;
+            i++ /*더할거야*/
+          ) {
+            console.log(`i : ${i}, prices[i] : ${prices[i]}`);
+            total += prices[i];
+            console.log(`total : ${total}`);
+            console.log("---------------------");
+          }
+          console.log(total);
+        </script>
+      </li>
+
+      <li>
+        주어진 배열에서 짝수만 출력하시오.
+        <script>
+          const numbers = [12, 7, 9, 20, 33, 16];
+          // 여기에 코드 작성
+          for (let i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 === 0) {
+              console.log(numbers[i]);
+            }
+          }
+        </script>
+      </li>
+
+      <li>
+        주어진 배열에서 가장 큰 값을 찾으시오.
+        <script>
+          const nums = [3, 45, 21, 99, 18, 77];
+          // 여기에 코드 작성
+          let max = nums[0];
+
+          for (let i = 1; i < nums.length; i++) {
+            if (nums[i] > max) {
+              max = nums[i];
+            }
+          }
+          console.log(max);
+        </script>
+      </li>
+
+      <li>
+        배열을 순회하며 홀수 개수를 세시오.
+        <script>
+          const values = [1, 4, 7, 8, 13, 20, 21];
+          //  // 여기에 코드 작성
+          //  let hol = valus[0];
+          //  for (let i = 1; i < values.length; i++) {
+          //   if (values[i] % 2 === 0) {
+          //     console.log(values[i]);
+          //   }
+          // }
+          let max = 0;
+          for (const nim of nim) {
+            if (max < num) {
+              max < num;
+            }
+          }
+          console.log(max);
+          console.log(Math.max(...nums));
+        </script>
+      </li>
+
+      <li>
+        배열의 각 요소를 두 배로 만들어 새 배열에 담으시오. (원본 배열은 그대로
+        두고 새 배열을 만들 것)
+        <script>
+          const original = [1, 2, 3, 4, 5];
+          // 여기에 코드 작성
+        </script>
+      </li>
+      <li>
+        배열에 push로 값을 하나 추가한 뒤, splice로 특정 값을 하나 삭제하시오.
+        <script>
+          const fruits = ["사과", "바나나", "포도"];
+          // 여기에 코드 작성 (예: "수박" 추가 후 "바나나" 삭제)
+
+          fruits.push("수박");
+          fruits.splice(1, 1);
+
+          console.log(fruits);
+        </script>
+      </li>
+    </ol>
+  </body>
+</html>
