@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나스닥 100 시세</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Pretendard", "Malgun Gothic", sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 32px 16px;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 28px; margin-bottom: 6px; }
+    .sub { color: #94a3b8; font-size: 14px; margin-bottom: 24px; }
+
+    .summary { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .card {
+      flex: 1;
+      min-width: 140px;
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card .label { color: #94a3b8; font-size: 13px; }
+    .card .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
+
+    .toolbar { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .toolbar input {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 15px;
+    }
+    .toolbar button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #3b82f6;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .toolbar button:hover { background: #2563eb; }
+
+    .table-box { overflow-x: auto; background: #1e293b; border-radius: 12px; }
+    table { width: 100%; border-collapse: collapse; min-width: 640px; }
+    th, td { padding: 12px 14px; text-align: right; white-space: nowrap; }
+    th {
+      background: #334155;
+      color: #cbd5e1;
+      font-size: 13px;
+      position: sticky;
+      top: 0;
+    }
+    th.left, td.left { text-align: left; }
+    tbody tr { border-bottom: 1px solid #273449; }
+    tbody tr:hover { background: #273449; }
+    .rank { color: #94a3b8; text-align: center; width: 50px; }
+    .symbol { font-weight: 700; }
+    .name { color: #94a3b8; font-size: 13px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
+
+    /* 한국식: 상승 빨강, 하락 파랑 */
+    .up { color: #f87171; }
+    .down { color: #60a5fa; }
+
+    .message { text-align: center; padding: 40px; color: #94a3b8; }
+
+    /* 오늘의 추천 */
+    .picks-title { font-size: 18px; margin-bottom: 4px; }
+    .picks-note { color: #94a3b8; font-size: 12px; margin-bottom: 12px; }
+    .picks { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin-bottom: 28px; }
+    .pick {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .pick .top { display: flex; justify-content: space-between; align-items: center; }
+    .pick .badge { font-size: 12px; background: #3b82f6; color: white; padding: 2px 8px; border-radius: 999px; }
+    .pick .score { font-size: 12px; color: #94a3b8; }
+    .pick .symbol { font-size: 20px; margin-top: 8px; }
+    .pick .name { margin-bottom: 8px; }
+    .pick .reason { font-size: 13px; color: #cbd5e1; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>📈 나스닥 100 시세</h1>
+    <p class="sub">시가총액 순위 1위 ~ 100위 · <span id="updated">불러오는 중...</span></p>
+
+    <div class="summary">
+      <div class="card"><div class="label">상승 종목</div><div class="value up" id="upCount">-</div></div>
+      <div class="card"><div class="label">하락 종목</div><div class="value down" id="downCount">-</div></div>
+      <div class="card"><div class="label">평균 등락률</div><div class="value" id="avgChange">-</div></div>
+    </div>
+
+    <h2 class="picks-title">🤖 오늘의 추천 종목</h2>
+    <p class="picks-note">
+      그날 등락률과 시가총액으로 점수를 계산해 고른 결과예요. 계산식일 뿐 투자 조언이 아니에요.
+    </p>
+    <div class="picks" id="picks"></div>
+
+    <div class="toolbar">
+      <input type="text" id="search" placeholder="종목 코드나 회사명 검색 (예: AAPL, Tesla)">
+      <button id="refreshBtn">새로고침</button>
+    </div>
+
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th class="rank">순위</th>
+            <th class="left">종목</th>
+            <th>현재가</th>
+            <th>전일 대비</th>
+            <th>등락률</th>
+            <th>시가총액</th>
+          </tr>
+        </thead>
+        <tbody id="stockList">
+          <tr><td colspan="6" class="message">데이터를 불러오는 중...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "/api/nasdaq100";
+    const REFRESH_MS = 60 * 1000; // 1분마다 자동 갱신
+
+    let stocks = [];
+
+    // "$1,234.56" / "4,869,056,273,400" / "+0.22%" 같은 문자열을 숫자로
+    function toNumber(text) {
+      return Number(String(text).replace(/[$,%+]/g, "")) || 0;
+    }
+
+    // 시가총액을 조/억 달러 단위로 보기 좋게
+    function formatMarketCap(value) {
+      if (value >= 1e12) return "$" + (value / 1e12).toFixed(2) + "T";
+      if (value >= 1e9) return "$" + (value / 1e9).toFixed(1) + "B";
+      return "$" + (value / 1e6).toFixed(0) + "M";
+    }
+
+    function cleanName(name) {
+      return name.replace(/ (Common Stock|Class [A-C].*|Ordinary Shares.*|American Depositary.*)$/i, "");
+    }
+
+    async function loadStocks() {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const json = await response.json();
+        const rows = json.data.data.rows;
+
+        stocks = rows
+          .map((row) => {
+            const change = toNumber(row.netChange);
+            const isDown = row.deltaIndicator === "down";
+            return {
+              symbol: row.symbol,
+              name: cleanName(row.companyName),
+              price: toNumber(row.lastSalePrice),
+              change: isDown ? -Math.abs(change) : Math.abs(change),
+              percent: toNumber(row.percentageChange),
+              marketCap: toNumber(row.marketCap),
+            };
+          })
+          .sort((a, b) => b.marketCap - a.marketCap) // 시가총액 큰 순서
+          .slice(0, 100); // 1위 ~ 100위
+
+        document.getElementById("updated").textContent =
+          "기준일 " + json.data.date + " · 갱신 " + new Date().toLocaleTimeString("ko-KR");
+
+        renderSummary();
+        renderPicks();
+        renderTable();
+      } catch (err) {
+        console.error(err);
+        document.getElementById("stockList").innerHTML =
+          '<tr><td colspan="6" class="message">데이터를 불러오지 못했어요.<br>' +
+          "터미널에서 <b>node stock-server.js</b> 실행 후 http://localhost:3000 으로 접속하세요.</td></tr>";
+        document.getElementById("updated").textContent = "불러오기 실패";
+      }
+    }
+
+    function renderSummary() {
+      const up = stocks.filter((s) => s.percent > 0).length;
+      const down = stocks.filter((s) => s.percent < 0).length;
+      const avg = stocks.reduce((sum, s) => sum + s.percent, 0) / stocks.length;
+
+      document.getElementById("upCount").textContent = up + "개";
+      document.getElementById("downCount").textContent = down + "개";
+
+      const avgEl = document.getElementById("avgChange");
+      avgEl.textContent = (avg > 0 ? "+" : "") + avg.toFixed(2) + "%";
+      avgEl.className = "value " + (avg > 0 ? "up" : avg < 0 ? "down" : "");
+    }
+
+    // 추천 점수 계산
+    // 1) 오늘 많이 오를수록 +점수 (단, +5% 넘게 급등한 건 과열로 보고 더 주지 않음)
+    // 2) 시가총액 순위가 높을수록(대형주일수록) +점수, 1위 4점 → 100위 0점
+    function getScore(stock) {
+      const momentum = Math.min(stock.percent, 5);
+      const size = (100 - stock.rank) / 25;
+      return momentum + size;
+    }
+
+    function getReason(stock) {
+      const reasons = [];
+      if (stock.rank <= 10) reasons.push(`시가총액 ${stock.rank}위 초대형주`);
+      else if (stock.rank <= 30) reasons.push(`시가총액 ${stock.rank}위 대형주`);
+      else reasons.push(`시가총액 ${stock.rank}위`);
+
+      if (stock.percent >= 3) reasons.push(`오늘 +${stock.percent.toFixed(2)}% 강한 상승`);
+      else if (stock.percent > 0) reasons.push(`오늘 +${stock.percent.toFixed(2)}% 상승`);
+      else reasons.push(`오늘 ${stock.percent.toFixed(2)}%로 시장 대비 선방`);
+
+      return reasons.join(" · ");
+    }
+
+    function renderPicks() {
+      const picks = stocks
+        .map((s, i) => ({ ...s, rank: i + 1 }))
+        .map((s) => ({ ...s, score: getScore(s) }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5);
+
+      document.getElementById("picks").innerHTML = picks
+        .map((s, i) => {
+          const color = s.percent > 0 ? "up" : s.percent < 0 ? "down" : "";
+          const sign = s.percent > 0 ? "+" : "";
+          return `
+            <div class="pick">
+              <div class="top">
+                <span class="badge">추천 ${i + 1}</span>
+                <span class="score">점수 ${s.score.toFixed(1)}</span>
+              </div>
+              <div class="symbol">${s.symbol} <span class="${color}">${sign}${s.percent.toFixed(2)}%</span></div>
+              <div class="name">${s.name}</div>
+              <div class="reason">${getReason(s)}</div>
+            </div>`;
+        })
+        .join("");
+    }
+
+    function renderTable() {
+      const keyword = document.getElementById("search").value.trim().toLowerCase();
+      const tbody = document.getElementById("stockList");
+
+      const html = stocks
+        .map((s, i) => ({ ...s, rank: i + 1 }))
+        .filter((s) => s.symbol.toLowerCase().includes(keyword) || s.name.toLowerCase().includes(keyword))
+        .map((s) => {
+          const color = s.percent > 0 ? "up" : s.percent < 0 ? "down" : "";
+          const arrow = s.percent > 0 ? "▲" : s.percent < 0 ? "▼" : "";
+          const sign = s.percent > 0 ? "+" : "";
+          return `
+            <tr>
+              <td class="rank">${s.rank}</td>
+              <td class="left">
+                <div class="symbol">${s.symbol}</div>
+                <div class="name">${s.name}</div>
+              </td>
+              <td>$${s.price.toFixed(2)}</td>
+              <td class="${color}">${arrow} ${Math.abs(s.change).toFixed(2)}</td>
+              <td class="${color}">${sign}${s.percent.toFixed(2)}%</td>
+              <td>${formatMarketCap(s.marketCap)}</td>
+            </tr>`;
+        })
+        .join("");
+
+      tbody.innerHTML = html || '<tr><td colspan="6" class="message">검색 결과가 없어요.</td></tr>';
+    }
+
+    document.getElementById("search").addEventListener("input", renderTable);
+    document.getElementById("refreshBtn").addEventListener("click", loadStocks);
+
+    loadStocks();
+    setInterval(loadStocks, REFRESH_MS);
+  </script>
+</body>
+</html>

@@ -1,26 +1,59 @@
-// 1~100 사이 랜덤 숫자 하나 만들기
-let computer = Math.floor(Math.random() * 100) + 1;
-computer = 50;
-console.log(typeof computer);
+// getTarget : 맞춰야 하는 랜덤 숫자
+const getTarget = () => {
+  return Math.floor(Math.random() * 100) + 1;
+};
 
-let count = 0;
-while (true) {
-  count++;
-  const input = Number(prompt("1~100사이의 숫자 맞추기"));
-
-  // computer의 랜덤값을 맞추기 위해서 내가 입력한 숫자와 비교해서
-  // 지금 내가 입력한 숫자가 큰지, 작은지, 맞췄는지 비교
-
-  if (computer === input) {
-    alert(`${count}번만에 맞추셨습니다!`);
-    break;
-  } else if (computer >= input) {
-    alert("해당 숫자보다 작습니다");
-  } else if (computer <= input) {
-    alert("해당 숫자보다 큽니다");
+// setInput : 사용자한테 입력 받은 값
+const setInput = () => {
+  let input = prompt("1~100 사이의 숫자를 맞춰보세요");
+  while (input === "" || isNaN(input)) {
+    input = prompt("1~100 사이의 숫자를 맞춰보세요");
   }
-  //정답을 맞추면 시도 횟수와 함께 종료 메시지를 출력
-  // (정답입니다! 몇 번 만에 맞추셨습니다)
+  return input;
+};
 
-  // const input2 = Number(prompt("정답입니다.   번만에 맞추셨습니다!"));
-}
+// judge : 판단 결과
+const judge = (random, input) => {
+  if (random > input) {
+    return "up";
+  } else if (random < input) {
+    return "down";
+  }
+  if (random === Number(input)) {
+    return "win";
+  }
+};
+
+// showMessage : 메세지 표시
+const showMessage = (result, count) => {
+  if (result === "up") {
+    alert("해당 숫자보다 큽니다");
+  } else if (result === "down") {
+    alert("해당 숫자보다 작습니다");
+  } else if (result === "win") {
+    alert(`정답입니다! ${count} 번 만에 맞추셨습니다`);
+  }
+};
+
+// play : 게임 진행
+const play = () => {
+  const target = getTarget();
+  let count = 0;
+
+  while (true) {
+    count++;
+    const user = setInput();
+
+    if (user === null) {
+      alert("게임 종료!");
+      break;
+    }
+
+    const result = judge(target, user);
+    showMessage(result, count);
+
+    if (result === "win") break;
+  }
+};
+
+play();

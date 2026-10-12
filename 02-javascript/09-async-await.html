@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>비동기</title>
+  </head>
+  <body>
+    <h1>비동기 처리</h1>
+    <p>
+      JS는 싱글스레드 (한번에 한작업)라 비동기로 대기중에도 UI와 로직을
+      유지하는데 있어서 서버요청, 타이머 기능등을 처리하는데 있어서 다른작업이
+      멈추지 않도록 하기위해
+    </p>
+    <h2>콜백(callback)</h2>
+    <button id="callback">콜백실행</button>
+    <p id="callResult"></p>
+    <button id="promise">promise실행</button>
+    <p id="promiseResult"></p>
+    <h2>async / await</h2>
+    <p>promise 를 "동기적 코드처럼" 작성</p>
+    <button id="async">asyne/await 실행</button>
+    <p id="asyAwaResult"></p>
+    <h2>fetch</h2>
+    <button id="" fetch>드라마 정보 가져오기</button>
+    <div id="fetchResult"></div>
+    <button id="fetchList">회원 목록 가져오기</button>
+    <ul id="userList"></ul>
+
+    <h2>카카오맵</h2>
+    <div id="map" style="width: 500px; height: 400px"></div>
+
+    <script src="./09-async-await.js"></script>
+  </body>
+</html>

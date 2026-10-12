@@ -1,0 +1,16 @@
+<h3>div 색상 변경</h3>
+    <div class="div-test" id="colorBox"></div>
+    <button onclick="changeColor()">색상 변경</button>
+    <style>
+    .colorBox {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        margin-bottom: 10px;
+
+
+    }
+
+.active{background-color: black
+    color : white
+    ;}
