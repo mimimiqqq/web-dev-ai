@@ -31,3 +31,21 @@ from cars c
 		join consultations c on c.car_id = car.id
 		join consultation_items ci on ci.consultation_id =c.id;	
 	
+	--테이블 : 카스, 메인탄스_레코드
+	--차 이름별 마지막 정비일(서비스데이터)
+	select name, count(*) as count
+	from maintenance_schedules m
+	join cars c on m.car_id=c.id 
+	where status = '완료'
+	group by name
+	order by count desc
+	limit 5;
+	
+	
+		--차 이름별 마지막 정비일(서비스데이터)
+	select name, count(*) as count
+	from maintenance_schedules m
+	join cars c on m.car_id=c.id 
+	group by name;
+
+	
