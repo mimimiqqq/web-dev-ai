@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열 예제</title>
+</head>
+<body>
+  <h2>배열(Array)</h2>
+
+  <script>
+    //변수
+    let season = "여름"; 
+    console.log("계절:", season);
+    console.log(typeof(season)); //string
+    
+    //배열 1.
+    //배열의 선언과 초기화
+    let seasons = ["봄", "여름", "가을", "겨울"];
+    console.log("계절:", seasons);
+    console.log(typeof(seasons)); //object
+
+    //요소에 접근(조회)
+    console.log(seasons[0]); //봄
+    console.log(seasons[2]); //가을
+
+    //배열 2.
+    let numbers = new Array(4);
+    console.log("배열의 길이:", numbers.length); //4
+
+    //요소(값) 저장
+    numbers[0] = 10;
+    numbers[1] = 20;
+    numbers[2] = 30;
+    numbers[3] = 40;
+
+    console.log(numbers);
+  </script>
+</body>
+</html>
